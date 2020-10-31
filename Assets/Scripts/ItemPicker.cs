@@ -9,16 +9,9 @@ public class ItemPicker : MonoBehaviour
     [SerializeField] private LayerMask lm;
     // Struct para mapear quais plantas estão em qual lugar, para salvar o progresso
 
-    public struct ObjectInfo
-    {
-        public GameObject obj;
-        public GameObject objHover;
-        public Material objHoverFree;
-        public Material objHoverOcc;
-    }
-
     [SerializeField] private GameObject obj;
     [SerializeField] private GameObject objHover;
+    [SerializeField] private MeshRenderer objHoverRenderer;
     [SerializeField] private Material objHoverFree;
     [SerializeField] private Material objHoverOcc;
 
@@ -29,6 +22,7 @@ public class ItemPicker : MonoBehaviour
     {
         grid = FindObjectOfType<Grid>();
         objHover = Instantiate(obj, new Vector3(50, 50, 50), transform.rotation);
+        objHoverRenderer = objHover.GetComponentInChildren<MeshRenderer>();
     }
 
     void Update()
@@ -44,6 +38,9 @@ public class ItemPicker : MonoBehaviour
             }else if (Input.GetMouseButtonDown(1))
             {
                 RemoveObject(hitInfo);
+            }else if (Input.GetKeyDown(KeyCode.R))
+            {
+                objHover.transform.Rotate(Vector3.up, 90f);
             }
             else
             {
@@ -65,7 +62,7 @@ public class ItemPicker : MonoBehaviour
 
     private void PutObject(RaycastHit hitInfo)
     {
-        grid.PutObjectOngrid(hitInfo.point, obj);
+        grid.PutObjectOngrid(hitInfo.point, objHover.transform.rotation, obj);
     }
 
     private void HoverObject(RaycastHit hitInfo)
@@ -73,11 +70,11 @@ public class ItemPicker : MonoBehaviour
         Vector3 finalPos = grid.GetNearestPointOnGrid(hitInfo.point);
         if (grid.IsPositionFree(finalPos))
         {
-            objHover.GetComponent<MeshRenderer>().material = objHoverFree;
+            objHoverRenderer.material = objHoverFree;
         }
         else
         {
-            objHover.GetComponent<MeshRenderer>().material = objHoverOcc;
+            objHoverRenderer.material = objHoverOcc;
         }
 
         objHover.transform.position = grid.GetNearestPointOnGrid(hitInfo.point);

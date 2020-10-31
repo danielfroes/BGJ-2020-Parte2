@@ -28,13 +28,13 @@ public class Grid : MonoBehaviour
         return result;
     }
 
-    public bool PutObjectOngrid(Vector3 ClickPoint, GameObject g)
+    public bool PutObjectOngrid(Vector3 position, Quaternion rotation, GameObject objPrefab)
     {
-        Vector3 finalPos = GetNearestPointOnGrid(ClickPoint);
+        Vector3 finalPos = GetNearestPointOnGrid(position);
         
         if (IsPositionFree(finalPos))
         { 
-            grid.Add(finalPos, Instantiate(g, finalPos, transform.rotation));
+            grid.Add(finalPos, Instantiate(objPrefab, finalPos, rotation));
             return true;
         }
 
@@ -51,7 +51,7 @@ public class Grid : MonoBehaviour
             return grid.Remove(nearestPoint);
         }
 
-        return false;
+        return objectInGrid;
     }
 
     public bool IsPositionFree(Vector3 position)
