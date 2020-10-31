@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 589122447}
   - component: {fileID: 589122446}
   m_Layer: 8
-  m_Name: Plane
+  m_Name: Grid
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -447,7 +447,7 @@ GameObject:
   - component: {fileID: 1587746513}
   - component: {fileID: 1587746512}
   m_Layer: 0
-  m_Name: CubePlacer
+  m_Name: ItemPicker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -468,7 +468,10 @@ MonoBehaviour:
   lm:
     serializedVersion: 2
     m_Bits: 256
-  plant: {fileID: 2933987417910631844, guid: 374dcfd55e8ff2e47b3005098c5b4597, type: 3}
+  obj: {fileID: 2933987417910631844, guid: 374dcfd55e8ff2e47b3005098c5b4597, type: 3}
+  objHover: {fileID: 0}
+  objHoverFree: {fileID: 2100000, guid: 29c91659649729e498dbcdc49fd3d609, type: 2}
+  objHoverOcc: {fileID: 2100000, guid: 355e340a75748d04bb578852d31c4e6d, type: 2}
 --- !u!4 &1587746513
 Transform:
   m_ObjectHideFlags: 0
