@@ -8,9 +8,8 @@ public class GarbagePile : MonoBehaviour
     private List<GarbageTypeComponent> items = new List<GarbageTypeComponent>();
     public List<GarbageItemType> testItems;
     private BoxCollider garbageCollider;
-    [SerializeField] private float distanceFromPile;
 
-    private void Start()
+    private void Awake()
     {
         garbageCollider = GetComponent<BoxCollider>();
     }
@@ -18,9 +17,13 @@ public class GarbagePile : MonoBehaviour
     public void AddItem(GarbageItemType item)
     {
         Vector3 position =  RandomPointInBounds(garbageCollider.bounds);
+        //Vector3 position =  Vector3.zero;
         Quaternion rotation = Quaternion.identity;
-
+        
         GarbageTypeComponent x = Instantiate(item.prefab, position, rotation, transform).GetComponent<GarbageTypeComponent>();
+        x.transform.position = position + transform.position;
+        x.transform.localRotation = rotation;
+        Debug.Log($"{x.transform.position}, {x.transform.localPosition}");
         items.Add(x);
     }
 
@@ -61,5 +64,13 @@ public class GarbagePile : MonoBehaviour
             bounds.min.y,
             Random.Range(bounds.min.z, bounds.max.z)
         );
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("ConveyorBelt"))
+        {
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
     }
 }
