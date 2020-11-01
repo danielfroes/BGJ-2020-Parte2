@@ -17,24 +17,28 @@ public class ProcessorMachine : MonoBehaviour
     {
         grid = FindObjectOfType<GridMap>();
     }
-    private void OnCollisionEnter(Collision collision)
-    {
 
-        if (collision.gameObject.CompareTag("GarbagePile"))
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("entri");
+        if (other.CompareTag("GarbagePile"))
         {
-            GarbagePile gp = collision.gameObject.GetComponent<GarbagePile>();
+            GarbagePile gp = other.gameObject.GetComponent<GarbagePile>();
+
             int failCounter = 0;
-            
+
             //verifica quantos items não podem ser processador por ela
-            foreach(GarbageTypeComponent gtc in gp.items)
+            foreach (GarbageTypeComponent gtc in gp.items)
             {
                 if (!itemsToProcess.Contains(gtc.type))
                 {
                     failCounter++;
                 }
             }
+            
+            gp.Process();
+            //Destroy(collision.gameObject);
 
-            Destroy(collision.gameObject);
             TakeDamage(failCounter * deathRate);
 
             Debug.Log($"Número de itens incorretos: {failCounter}");
@@ -68,9 +72,6 @@ public class ProcessorMachine : MonoBehaviour
     }
 
 
-    //destroi o item
-    //se pega muito item errado, pode quebrar
-    //cria um novo pile compactado
 
 
 }

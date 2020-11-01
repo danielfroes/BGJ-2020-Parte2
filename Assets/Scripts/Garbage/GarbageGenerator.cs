@@ -13,7 +13,8 @@ public class GarbageGenerator : MonoBehaviour
 
     private void Awake()
     {
-       garbageItemTypes = Resources.FindObjectsOfTypeAll<GarbageItemType>();
+       if(garbageItemTypes.Length == 0)
+            garbageItemTypes = Resources.FindObjectsOfTypeAll<GarbageItemType>();
     }
 
     private void Update()

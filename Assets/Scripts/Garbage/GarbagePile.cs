@@ -8,6 +8,8 @@ public class GarbagePile : MonoBehaviour
     public List<GarbageTypeComponent> items = new List<GarbageTypeComponent>();
     public List<GarbageItemType> testItems = null;
     public LayerMask conveyorLM = 0;
+    public bool isProcessed = false;
+    public GameObject processedSkin;
 
     private BoxCollider garbageCollider = null;
     private Vector3 moveDirection = Vector3.zero;
@@ -29,6 +31,14 @@ public class GarbagePile : MonoBehaviour
         x.transform.position = position + transform.position;
         x.transform.localRotation = rotation;
         items.Add(x);
+    }
+
+    internal void Process()
+    {
+        isProcessed = true;
+        processedSkin.SetActive(true);
+        
+
     }
 
     private void Update()
