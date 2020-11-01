@@ -1,27 +1,35 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-//using System.Diagnostics;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ItemPicker : MonoBehaviour
 {
     [SerializeField] private LayerMask lm = 0;
     // Struct para mapear quais plantas estão em qual lugar, para salvar o progresso
 
-    [SerializeField] private GameObject obj = null;
+    [SerializeField] private GameObject objSelectedPrefab = null;
     [SerializeField] private GameObject objHover = null;
     [SerializeField] private MeshRenderer objHoverRenderer = null;
     [SerializeField] private Material objHoverFree = null;
     [SerializeField] private Material objHoverOcc = null;
+    [SerializeField] private InventoryController inventory = null;
 
     private Grid grid = null;
-    //private GameObject[,] plantsPos = new GameObject[50, 50];
     
     void Start()
     {
         grid = FindObjectOfType<Grid>();
-        objHover = Instantiate(obj, new Vector3(50, 50, 50), transform.rotation);
+        inventory.OnItemChange += Inventory_OnItemChange;
+    }
+
+    private void Inventory_OnItemChange(GameObject _obj)
+    {
+        if(objHover != null)
+        {
+            Destroy(objHover);
+        }
+
+        objSelectedPrefab = _obj;
+        objHover = Instantiate(objSelectedPrefab, new Vector3(50, 50, 50), transform.rotation);
         objHoverRenderer = objHover.GetComponentInChildren<MeshRenderer>();
     }
 
@@ -30,7 +38,7 @@ public class ItemPicker : MonoBehaviour
         RaycastHit hitInfo;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hitInfo, 2100, lm))
+        if (Physics.Raycast(ray, out hitInfo, 2100, lm) && !EventSystem.current.IsPointerOverGameObject())
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -47,6 +55,10 @@ public class ItemPicker : MonoBehaviour
                 HoverObject(hitInfo);
             }
         }
+        else
+        {
+            if(objHover != null) objHover.SetActive(false);
+        }
         
     }
 
@@ -62,11 +74,14 @@ public class ItemPicker : MonoBehaviour
 
     private void PutObject(RaycastHit hitInfo)
     {
-        grid.PutObjectOngrid(hitInfo.point, objHover.transform.rotation, obj);
+        grid.PutObjectOngrid(hitInfo.point, objHover.transform.rotation, objSelectedPrefab);
     }
 
     private void HoverObject(RaycastHit hitInfo)
     {
+        if (objHover == null) return;
+
+        objHover.SetActive(true);
         Vector3 finalPos = grid.GetNearestPointOnGrid(hitInfo.point);
         if (grid.IsPositionFree(finalPos))
         {

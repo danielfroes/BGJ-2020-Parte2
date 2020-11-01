@@ -3,8 +3,8 @@
 public class GarbageGenerator : MonoBehaviour
 {
     [SerializeField] private float garbagePerSecond = 0;
-    [SerializeField] private GameObject garbagePilePrefab;
-    [SerializeField] private int itemsPerPile;
+    [SerializeField] private GameObject garbagePilePrefab = null;
+    [SerializeField] private int itemsPerPile = 0;
 
     private GarbageItemType[] garbageItemTypes = null;
     private float time = 0;

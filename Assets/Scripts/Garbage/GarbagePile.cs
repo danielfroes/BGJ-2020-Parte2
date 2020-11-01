@@ -23,7 +23,6 @@ public class GarbagePile : MonoBehaviour
         GarbageTypeComponent x = Instantiate(item.prefab, position, rotation, transform).GetComponent<GarbageTypeComponent>();
         x.transform.position = position + transform.position;
         x.transform.localRotation = rotation;
-        Debug.Log($"{x.transform.position}, {x.transform.localPosition}");
         items.Add(x);
     }
 
