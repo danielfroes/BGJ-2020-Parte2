@@ -20,7 +20,7 @@ public class ProcessorMachine : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("entri");
+
         if (other.CompareTag("GarbagePile"))
         {
             GarbagePile gp = other.gameObject.GetComponent<GarbagePile>();
@@ -41,7 +41,7 @@ public class ProcessorMachine : MonoBehaviour
 
             TakeDamage(failCounter * deathRate);
 
-            Debug.Log($"Número de itens incorretos: {failCounter}");
+           // Debug.Log($"Número de itens incorretos: {failCounter}");
             // caso os items que chegaram não sejam do tipo que ela processa, a sua durabilidade diminui
         }
     }
