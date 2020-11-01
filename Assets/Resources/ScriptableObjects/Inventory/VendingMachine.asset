@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e500a502c5341e74e8731c723330b63e, type: 3}
-  m_Name: ConveyorBeltLeft
+  m_Name: VendingMachine
   m_EditorClassIdentifier: 
   count: 0
-  price: 15
-  prefab: {fileID: 7171511411703191565, guid: 00288f992a1e69a45973fa3130a37345, type: 3}
+  price: 0
+  prefab: {fileID: 0}
   sprite: {fileID: 0}

@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
-    [Header("Script References")]
-    [SerializeField] private InventoryController Inventory = null;
+    [Header("Inventory Reference")]
+    [SerializeField] private InventoryControllerSO Inventory = null;
 
     [Header("Serialized Properties")]
     [SerializeField] private GameObject itemBtnPrefab = null;
@@ -47,6 +47,7 @@ public class InventoryUI : MonoBehaviour
 
         Inventory.OnItemUse += Inventory_OnItemUse;
         Inventory.OnMoneyUpdate += Inventory_OnMoneyUpdate;
+        Inventory_OnMoneyUpdate();
     }
 
     private void Inventory_OnMoneyUpdate()

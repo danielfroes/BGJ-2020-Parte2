@@ -4,14 +4,15 @@ using UnityEngine.EventSystems;
 public class ItemPicker : MonoBehaviour
 {
     [SerializeField] private LayerMask lm = 0;
+    [SerializeField] private InventoryControllerSO inventory = null;
     // Struct para mapear quais plantas estão em qual lugar, para salvar o progresso
 
     [SerializeField] private InventoryItem objSelected = null;
-    [SerializeField] private GameObject objHover = null;
-    [SerializeField] private MeshRenderer objHoverRenderer = null;
     [SerializeField] private Material objHoverFree = null;
     [SerializeField] private Material objHoverOcc = null;
-    [SerializeField] private InventoryController inventory = null;
+
+    private GameObject objHover = null;
+    private MeshRenderer objHoverRenderer = null;
 
     private GridMap grid = null;
     
