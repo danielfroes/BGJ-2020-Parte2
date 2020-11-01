@@ -85,6 +85,11 @@ public class GarbagePile : MonoBehaviour
             moveDirection = collision.transform.forward;
             moveSpeed = collision.gameObject.GetComponent<ConveyorBelt>().Speed;
         }
+
+        if(collision.gameObject.CompareTag("Ground")){
+            StopAllCoroutines();
+            Destroy(gameObject);
+        }
     }
 
     public void CheckMovement()

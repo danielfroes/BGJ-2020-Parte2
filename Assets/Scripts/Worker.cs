@@ -85,9 +85,9 @@ public class Worker : MonoBehaviour
         garbagePile.NewList(items);
         
         Vector3 pos = GridMap.Static_GetNearestPointOnGrid(transform.position - transform.forward * GridMap.BaseGridSize);
-        
-        Debug.Log(pos + " " + transform.position + " " + transform.forward * GridMap.BaseGridSize + " " + (transform.position - transform.forward * GridMap.BaseGridSize));
-        
+
+        //Debug.Log(pos + " " + transform.position + " " + transform.forward * GridMap.BaseGridSize + " " + (transform.position - transform.forward * GridMap.BaseGridSize));
+        garbagePile.StopAllCoroutines();
         StartCoroutine(garbagePile.MoveToNext(pos));
 
     }
