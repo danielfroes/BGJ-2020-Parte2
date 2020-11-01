@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c66d0df207e4c8e459a7bc5a5db2a4fe, type: 3}
-  m_Name: Item2
+  m_Name: Star
   m_EditorClassIdentifier: 
-  prefab: {fileID: 2206115489519302096, guid: cab5f19b3a2b6ca4097018571aff7017, type: 3}
+  prefab: {fileID: 1277770649403397302, guid: 67725f7c23d9a364bae15eea4661d8e8, type: 3}
   sellingPrice: 2

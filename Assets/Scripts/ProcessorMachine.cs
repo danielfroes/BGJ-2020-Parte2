@@ -13,14 +13,17 @@ public class ProcessorMachine : MonoBehaviour
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private GridMap grid = null;
 
+    private Animator animator = null;
+
     private void Start()
     {
         grid = FindObjectOfType<GridMap>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("entri");
+
         if (other.CompareTag("GarbagePile"))
         {
             GarbagePile gp = other.gameObject.GetComponent<GarbagePile>();
@@ -35,13 +38,16 @@ public class ProcessorMachine : MonoBehaviour
                     failCounter++;
                 }
             }
-            
+
+            // Animation
+            animator.SetTrigger("AtivarPistao");
+
             gp.Process();
             //Destroy(collision.gameObject);
 
             TakeDamage(failCounter * deathRate);
 
-            Debug.Log($"Número de itens incorretos: {failCounter}");
+           // Debug.Log($"Número de itens incorretos: {failCounter}");
             // caso os items que chegaram não sejam do tipo que ela processa, a sua durabilidade diminui
         }
     }
