@@ -57,7 +57,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_80CDBCF7: 0.5
+    - Vector1_80CDBCF7: 1.1
     - _AlphaClip: 0
     - _Blend: 0
     - _BlendOp: 0
@@ -96,7 +96,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_FCC2C596: {r: 0.9528302, g: 0.9483357, b: 0.9483357, a: 0}
+    - Color_FCC2C596: {r: 1, g: 1, b: 1, a: 0}
     - _BaseColor: {r: 0.8566661, g: 0.8773585, b: 0.8768175, a: 1}
     - _BaseColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
     - _CameraFadeParams: {r: 0, g: 0, b: 0, a: 0}
