@@ -56,10 +56,14 @@ public class ItemPicker : MonoBehaviour
             {
                 objHover.SetActive(false);
                 RemoveObject(hitInfo);
-            }else if (Input.GetKeyDown(KeyCode.R))
+            }
+            else if (Input.GetAxis("Mouse ScrollWheel") > 0f) // forward
             {
-
                 objHover.transform.Rotate(Vector3.up, 90f);
+            }
+            else if (Input.GetAxis("Mouse ScrollWheel") < 0f) // backwards
+            {
+                objHover.transform.Rotate(Vector3.up, -90f);
             }
             else if (isPlacing)
             {

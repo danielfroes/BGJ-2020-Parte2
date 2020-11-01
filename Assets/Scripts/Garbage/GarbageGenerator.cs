@@ -55,7 +55,6 @@ public class GarbageGenerator : MonoBehaviour
         garbagePile.StartCoroutine(nameof(garbagePile.MoveToNext), finalPosition);
     }
 
-
     private void AddGoodItems(int numItems, GarbagePile garbagePile)
     {
         for (int i = 0; i < numItems; i++)
