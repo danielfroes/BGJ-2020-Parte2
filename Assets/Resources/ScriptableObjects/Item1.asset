@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Item1
   m_EditorClassIdentifier: 
   prefab: {fileID: 1277770649403397302, guid: 85b44919c983fd74489b5a114d7d2ede, type: 3}
+  sellingPrice: 1

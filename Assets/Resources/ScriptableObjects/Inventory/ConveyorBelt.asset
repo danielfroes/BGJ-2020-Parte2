@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: ConveyorBelt
   m_EditorClassIdentifier: 
   count: 0
-  price: 100
+  price: 10
   prefab: {fileID: 8634651967504591022, guid: 8d30c88ebbdd6de42912c83e8c44b792, type: 3}
+  sprite: {fileID: 0}
