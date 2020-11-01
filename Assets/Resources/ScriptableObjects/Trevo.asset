@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c66d0df207e4c8e459a7bc5a5db2a4fe, type: 3}
-  m_Name: Item1
+  m_Name: Trevo
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1277770649403397302, guid: 85b44919c983fd74489b5a114d7d2ede, type: 3}
-  sellingPrice: 1
+  prefab: {fileID: 1277770649403397302, guid: 1454eae56beb87049bdf5c20a7297e88, type: 3}
+  sellingPrice: 3
