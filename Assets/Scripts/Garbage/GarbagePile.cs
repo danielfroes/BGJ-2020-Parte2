@@ -13,8 +13,6 @@ public class GarbagePile : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     private float moveSpeed = 1f;
 
-
-
     private void Awake()
     {
         garbageCollider = GetComponent<BoxCollider>();
