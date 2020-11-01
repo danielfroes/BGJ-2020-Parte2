@@ -4,15 +4,18 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using UnityEngine;
 
-public class Grid : MonoBehaviour
+public class GridMap : MonoBehaviour
 {
-    [SerializeField] private float size = 1f;
+    public static float BaseGridSize = 1f;
+
+    public float size = 1f;
     [SerializeField] private Dictionary<Vector3, GameObject> grid;
 
     void Start()
     {
         grid = new Dictionary<Vector3, GameObject>();
     }
+
     public Vector3 GetNearestPointOnGrid(Vector3 position)
     {
         position -= transform.position;
@@ -24,6 +27,26 @@ public class Grid : MonoBehaviour
         Vector3 result = new Vector3(xCount * size, yCount * size, zCount * size);
 
         result += transform.position;
+
+        return result;
+    }
+
+    /// <summary>
+    /// Grid tem que ta no (0, 0, 0)
+    /// </summary>
+    /// <param name="position"></param>
+    /// <returns></returns>
+    public static Vector3 Static_GetNearestPointOnGrid(Vector3 position)
+    {
+        //position -= transform.position;
+
+        int xCount = Mathf.RoundToInt(position.x / BaseGridSize);
+        int yCount = Mathf.RoundToInt(position.y / BaseGridSize);
+        int zCount = Mathf.RoundToInt(position.z / BaseGridSize);
+
+        Vector3 result = new Vector3(xCount * BaseGridSize, yCount * BaseGridSize, zCount * BaseGridSize);
+
+        //result += transform.position;
 
         return result;
     }
@@ -56,7 +79,7 @@ public class Grid : MonoBehaviour
 
     public bool IsPositionFree(Vector3 position)
     {
-        return !grid.ContainsKey(position);
+        return !grid.ContainsKey(GetNearestPointOnGrid(position));
     } 
 
     /*

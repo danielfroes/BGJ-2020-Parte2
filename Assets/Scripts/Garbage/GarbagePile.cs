@@ -6,8 +6,11 @@ using UnityEngine.PlayerLoop;
 public class GarbagePile : MonoBehaviour
 {
     private List<GarbageTypeComponent> items = new List<GarbageTypeComponent>();
-    public List<GarbageItemType> testItems;
-    private BoxCollider garbageCollider;
+    public List<GarbageItemType> testItems = null;
+
+    private BoxCollider garbageCollider = null;
+    private Vector3 moveDirection = Vector3.zero;
+    private float moveSpeed = 1f;
 
     private void Awake()
     {
@@ -17,7 +20,6 @@ public class GarbagePile : MonoBehaviour
     public void AddItem(GarbageItemType item)
     {
         Vector3 position =  RandomPointInBounds(garbageCollider.bounds);
-        //Vector3 position =  Vector3.zero;
         Quaternion rotation = Quaternion.identity;
         
         GarbageTypeComponent x = Instantiate(item.prefab, position, rotation, transform).GetComponent<GarbageTypeComponent>();
@@ -65,11 +67,34 @@ public class GarbagePile : MonoBehaviour
         );
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("ConveyorBelt"))
         {
-            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            moveDirection = collision.transform.forward;
+            moveSpeed = collision.gameObject.GetComponent<ConveyorBelt>().Speed;
         }
+    }
+
+    public void CheckMovement()
+    {
+        Vector3 finalPoint = GridMap.Static_GetNearestPointOnGrid(transform.position + moveDirection * GridMap.BaseGridSize);
+
+        StartCoroutine(nameof(MoveToNext), finalPoint);
+    }
+
+    public IEnumerator MoveToNext(Vector3 finalPoint)
+    {
+        Vector2 myPosition = new Vector2(transform.position.x, transform.position.z);
+        Vector2 finalPosition = new Vector2(finalPoint.x, finalPoint.z);
+        // Lerp ateh o meio do belt
+        while (myPosition != finalPosition)
+        {
+            myPosition = Vector2.Lerp(myPosition, finalPosition, moveSpeed * Time.deltaTime);
+            transform.position = new Vector3(myPosition.x, transform.position.y, myPosition.y);
+            yield return null;
+        }
+        // CheckMovement
+        CheckMovement();
     }
 }

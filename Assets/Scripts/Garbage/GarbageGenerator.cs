@@ -2,9 +2,10 @@
 
 public class GarbageGenerator : MonoBehaviour
 {
-    [SerializeField] private float garbagePerSecond = 0;
+    [SerializeField] private float garbagePerSecond = 1;
     [SerializeField] private GameObject garbagePilePrefab = null;
-    [SerializeField] private int itemsPerPile = 0;
+    [SerializeField] private int itemsPerPile = 5;
+    [SerializeField] private GridMap grid = null;
 
     private GarbageItemType[] garbageItemTypes = null;
     private float time = 0;
@@ -19,12 +20,16 @@ public class GarbageGenerator : MonoBehaviour
         time += Time.deltaTime;
         if(time >= 1 / garbagePerSecond)
         {
-            CreateGarbagePile();
-            time = 0;
+            Vector3 finalPosition = transform.position + transform.forward * grid.size;
+            if (!grid.IsPositionFree(finalPosition))
+            {
+                CreateGarbagePile(finalPosition);
+                time = 0;
+            }
         }
     }
 
-    private void CreateGarbagePile()
+    private void CreateGarbagePile(Vector3 finalPosition)
     {
         GarbagePile garbagePile = Instantiate(garbagePilePrefab).GetComponent<GarbagePile>();
         garbagePile.transform.position = transform.position;
@@ -33,5 +38,7 @@ public class GarbageGenerator : MonoBehaviour
         {
            garbagePile.AddItem(garbageItemTypes[Random.Range(0, garbageItemTypes.Length)]);
         }
+
+        garbagePile.StartCoroutine(nameof(garbagePile.MoveToNext), finalPosition);
     }
 }

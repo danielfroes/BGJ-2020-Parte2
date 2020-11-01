@@ -13,11 +13,11 @@ public class ItemPicker : MonoBehaviour
     [SerializeField] private Material objHoverOcc = null;
     [SerializeField] private InventoryController inventory = null;
 
-    private Grid grid = null;
+    private GridMap grid = null;
     
     void Start()
     {
-        grid = FindObjectOfType<Grid>();
+        grid = FindObjectOfType<GridMap>();
         inventory.OnItemChange += Inventory_OnItemChange;
     }
 
