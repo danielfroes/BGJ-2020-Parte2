@@ -21,14 +21,14 @@ public class ItemPicker : MonoBehaviour
         inventory.OnItemChange += Inventory_OnItemChange;
     }
 
-    private void Inventory_OnItemChange(GameObject _obj)
+    private void Inventory_OnItemChange(InventoryItem _obj)
     {
         if(objHover != null)
         {
             Destroy(objHover);
         }
 
-        objSelectedPrefab = _obj;
+        objSelectedPrefab = _obj.prefab;
         objHover = Instantiate(objSelectedPrefab, new Vector3(50, 50, 50), transform.rotation);
         objHoverRenderer = objHover.GetComponentInChildren<MeshRenderer>();
         objHover.GetComponentInChildren<Collider>().enabled = false;
@@ -36,6 +36,9 @@ public class ItemPicker : MonoBehaviour
 
     void Update()
     {
+        if (objHover == null || objSelectedPrefab == null)
+            return;
+
         RaycastHit hitInfo;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -58,7 +61,7 @@ public class ItemPicker : MonoBehaviour
         }
         else
         {
-            if(objHover != null) objHover.SetActive(false);
+            objHover.SetActive(false);
         }
         
     }
@@ -74,7 +77,10 @@ public class ItemPicker : MonoBehaviour
 
     private void PutObject(RaycastHit hitInfo)
     {
-        grid.PutObjectOngrid(hitInfo.point, objHover.transform.rotation, objSelectedPrefab);
+        if (inventory.DecreaseCount())
+        {
+            grid.PutObjectOngrid(hitInfo.point, objHover.transform.rotation, objSelectedPrefab);
+        }
     }
 
     private void HoverObject(RaycastHit hitInfo)
