@@ -40,7 +40,7 @@ public class ProcessorMachine : MonoBehaviour
             }
 
             // Animation
-            animator.SetTrigger(0);
+            animator.SetTrigger("AtivarPistao");
 
             gp.Process();
             //Destroy(collision.gameObject);
