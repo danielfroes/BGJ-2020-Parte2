@@ -87,10 +87,16 @@ public class GarbagePile : MonoBehaviour
     {
         Vector2 myPosition = new Vector2(transform.position.x, transform.position.z);
         Vector2 finalPosition = new Vector2(finalPoint.x, finalPoint.z);
+        float travelDistance = (myPosition - finalPosition).magnitude;
+
+        float travelFraction = 0f;
         // Lerp ateh o meio do belt
         while (myPosition != finalPosition)
         {
-            myPosition = Vector2.Lerp(myPosition, finalPosition, moveSpeed * Time.deltaTime);
+            travelFraction += (moveSpeed * Time.deltaTime) / travelDistance;
+
+            myPosition = Vector2.Lerp(myPosition, finalPosition, travelFraction);
+
             transform.position = new Vector3(myPosition.x, transform.position.y, myPosition.y);
             yield return null;
         }
