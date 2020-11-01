@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class ItemPicker : MonoBehaviour
@@ -12,6 +13,9 @@ public class ItemPicker : MonoBehaviour
     [SerializeField] private Material objHoverFree = null;
     [SerializeField] private Material objHoverOcc = null;
     [SerializeField] private InventoryController inventory = null;
+    
+    [SerializeField] private bool isPlacing = false;
+    [SerializeField] private Vector3 placingStartedPoint;
 
     private GridMap grid = null;
     
@@ -44,26 +48,46 @@ public class ItemPicker : MonoBehaviour
 
         if (Physics.Raycast(ray, out hitInfo, 2100, lm) && !EventSystem.current.IsPointerOverGameObject())
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButton(0))
             {
+                //StartPlacement(hitInfo);
                 PutObject(hitInfo);
-            }else if (Input.GetMouseButtonDown(1))
+            }else if (Input.GetMouseButton(1))
             {
+                objHover.SetActive(false);
                 RemoveObject(hitInfo);
             }else if (Input.GetKeyDown(KeyCode.R))
             {
+
                 objHover.transform.Rotate(Vector3.up, 90f);
             }
-            else
+            else if (isPlacing)
             {
-                HoverObject(hitInfo);
+                DrawPathToMouse(hitInfo.point);
             }
+            
+            
+            HoverObject(hitInfo);
+            
         }
         else
         {
             objHover.SetActive(false);
         }
         
+    }
+
+    private void DrawPathToMouse(Vector3 dest)
+    {
+
+
+    }
+
+    private void StartPlacement(RaycastHit hitInfo)
+    {
+        isPlacing = true;
+        //placingStartedPoint = get;
+        PutObject(hitInfo);
     }
 
     private void RemoveObject(RaycastHit hitInfo)
