@@ -6,7 +6,7 @@ public class ItemPicker : MonoBehaviour
     [SerializeField] private LayerMask lm = 0;
     // Struct para mapear quais plantas estão em qual lugar, para salvar o progresso
 
-    [SerializeField] private GameObject objSelectedPrefab = null;
+    [SerializeField] private InventoryItem objSelected = null;
     [SerializeField] private GameObject objHover = null;
     [SerializeField] private MeshRenderer objHoverRenderer = null;
     [SerializeField] private Material objHoverFree = null;
@@ -28,15 +28,15 @@ public class ItemPicker : MonoBehaviour
             Destroy(objHover);
         }
 
-        objSelectedPrefab = _obj.prefab;
-        objHover = Instantiate(objSelectedPrefab, new Vector3(50, 50, 50), transform.rotation);
+        objSelected = _obj;
+        objHover = Instantiate(objSelected.prefab, new Vector3(50, 50, 50), transform.rotation);
         objHoverRenderer = objHover.GetComponentInChildren<MeshRenderer>();
         objHover.GetComponentInChildren<Collider>().enabled = false;
     }
 
     void Update()
     {
-        if (objHover == null || objSelectedPrefab == null)
+        if (objHover == null || objSelected == null)
             return;
 
         RaycastHit hitInfo;
@@ -71,15 +71,20 @@ public class ItemPicker : MonoBehaviour
         GameObject g;
         if (grid.RemoveObject(hitInfo.point, out g))
         {
+            inventory.SellItem(g.GetComponent<InventoryItemComponent>().type);
             Destroy(g);
         }
     }
 
     private void PutObject(RaycastHit hitInfo)
     {
-        if (inventory.DecreaseCount())
+        if (grid.IsPositionFree(hitInfo.point))
         {
-            grid.PutObjectOngrid(hitInfo.point, objHover.transform.rotation, objSelectedPrefab);
+            if (inventory.DecreaseCount())
+            {
+                grid.PutObjectOngrid(hitInfo.point, objHover.transform.rotation, objSelected.prefab);
+                grid.GetObjectAtPosition(hitInfo.point).AddComponent<InventoryItemComponent>().type = objSelected; 
+            }
         }
     }
 

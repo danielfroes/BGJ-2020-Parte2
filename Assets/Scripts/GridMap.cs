@@ -55,7 +55,7 @@ public class GridMap : MonoBehaviour
     {
         Vector3 finalPos = GetNearestPointOnGrid(position);
         
-        if (IsPositionFree(finalPos))
+        if (IsPositionFree(position))
         { 
             grid.Add(finalPos, Instantiate(objPrefab, finalPos, rotation));
             return true;
@@ -80,7 +80,16 @@ public class GridMap : MonoBehaviour
     public bool IsPositionFree(Vector3 position)
     {
         return !grid.ContainsKey(GetNearestPointOnGrid(position));
-    } 
+    }
+
+    public GameObject GetObjectAtPosition(Vector3 position)
+    {
+        if (!IsPositionFree(position))
+        {
+            return grid[GetNearestPointOnGrid(position)];
+        }
+        else return null;
+    }
 
     /*
     private void OnDrawGizmos()

@@ -54,14 +54,19 @@ public class InventoryController : MonoBehaviour
 
     public void SellItem(InventoryItem item)
     {
-        Money += item.price;
+        Money += item.price * 0.8f;
     }
 
 
     public void SelectItem(int _index)
     {
+        if (_index < 0 || _index > NumItems)
+        {
+            Debug.LogError("Selecting Out Of Range");
+            return;
+        }
+
         selectedItem = _index;
-        Debug.Log("Coming "+ _index);
         OnItemChange?.Invoke(items[selectedItem]);
     }
 
