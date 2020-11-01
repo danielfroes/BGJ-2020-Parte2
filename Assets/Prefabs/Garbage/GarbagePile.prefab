@@ -47,7 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   testItems:
   - {fileID: 11400000, guid: dd367bb41c328bb42a8f3844cb477db8, type: 2}
-  distanceFromPile: 0.15
+  conveyorLM:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!65 &5071499145087510958
 BoxCollider:
   m_ObjectHideFlags: 0

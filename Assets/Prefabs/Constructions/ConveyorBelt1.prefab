@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6899765303137675892}
   - component: {fileID: 3508353480804437469}
   - component: {fileID: 4746039853534053852}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (2)
   m_TagString: ConveyorBelt
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 3556088584788951068}
   - component: {fileID: 4181988726926208504}
   - component: {fileID: 2550961176919351249}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (1)
   m_TagString: ConveyorBelt
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6226735330903987748}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ConveyorBelt1
   m_TagString: ConveyorBelt
   m_Icon: {fileID: 0}

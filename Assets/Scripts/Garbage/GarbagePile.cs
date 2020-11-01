@@ -7,14 +7,19 @@ public class GarbagePile : MonoBehaviour
 {
     private List<GarbageTypeComponent> items = new List<GarbageTypeComponent>();
     public List<GarbageItemType> testItems = null;
+    public LayerMask conveyorLM = 0;
 
     private BoxCollider garbageCollider = null;
     private Vector3 moveDirection = Vector3.zero;
     private float moveSpeed = 1f;
 
+
+
     private void Awake()
     {
         garbageCollider = GetComponent<BoxCollider>();
+        conveyorLM = LayerMask.GetMask("Conveyor");
+
     }
     // Start is called before the first frame update
     public void AddItem(GarbageItemType item)
@@ -78,9 +83,16 @@ public class GarbagePile : MonoBehaviour
 
     public void CheckMovement()
     {
+        if (!IsOnConveyor()) return;
+
         Vector3 finalPoint = GridMap.Static_GetNearestPointOnGrid(transform.position + moveDirection * GridMap.BaseGridSize);
 
         StartCoroutine(nameof(MoveToNext), finalPoint);
+    }
+
+    private bool IsOnConveyor()
+    {
+        return Physics.Raycast(transform.position, Vector3.down, 2100, conveyorLM);
     }
 
     public IEnumerator MoveToNext(Vector3 finalPoint)
