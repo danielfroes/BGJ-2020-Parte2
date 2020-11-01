@@ -37,8 +37,6 @@ public class GarbagePile : MonoBehaviour
     {
         isProcessed = true;
         processedSkin.SetActive(true);
-        
-
     }
 
     private void Update()

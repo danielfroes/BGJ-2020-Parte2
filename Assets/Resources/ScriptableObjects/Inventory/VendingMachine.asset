@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c66d0df207e4c8e459a7bc5a5db2a4fe, type: 3}
-  m_Name: Item1
+  m_Script: {fileID: 11500000, guid: e500a502c5341e74e8731c723330b63e, type: 3}
+  m_Name: VendingMachine
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1277770649403397302, guid: 85b44919c983fd74489b5a114d7d2ede, type: 3}
-  sellingPrice: 1
+  count: 0
+  price: 10
+  prefab: {fileID: 7279820794581108169, guid: ed062127239b6274f8c1bf58e7b5c0cd, type: 3}
+  sprite: {fileID: 0}

@@ -18,7 +18,7 @@ public class GridMap : MonoBehaviour
 
     public Vector3 GetNearestPointOnGrid(Vector3 position)
     {
-        position -= transform.position;
+
 
         int xCount = Mathf.RoundToInt(position.x / size);
         int yCount = Mathf.RoundToInt(position.y / size);
@@ -26,7 +26,6 @@ public class GridMap : MonoBehaviour
 
         Vector3 result = new Vector3(xCount * size, yCount * size, zCount * size);
 
-        result += transform.position;
 
         return result;
     }

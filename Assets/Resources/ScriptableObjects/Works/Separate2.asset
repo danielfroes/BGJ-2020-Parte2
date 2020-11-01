@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c66d0df207e4c8e459a7bc5a5db2a4fe, type: 3}
-  m_Name: Item1
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 1277770649403397302, guid: 85b44919c983fd74489b5a114d7d2ede, type: 3}
-  sellingPrice: 1
+  m_Script: {fileID: 11500000, guid: c9916480a56420d44b5637d6b2585e79, type: 3}
+  m_Name: Separate2
+  m_EditorClassIdentifier: Assembly-CSharp::Work
+  jobType: 0
+  referTo: {fileID: 11400000, guid: 762de2c4c7925014bae19e1bec63d099, type: 2}
