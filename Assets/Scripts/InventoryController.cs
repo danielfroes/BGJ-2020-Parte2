@@ -6,13 +6,23 @@ public class InventoryController : MonoBehaviour
 {
     public event Action<InventoryItem> OnItemChange;
     public event Action<InventoryItem, int> OnItemUse;
+    public event Action OnMoneyUpdate;
 
-    public float Money { get; private set; } = 0;
+    public float Money
+    {
+        get => moneyAmount;
+        private set
+        {
+            moneyAmount = value;
+            OnMoneyUpdate?.Invoke();
+        }
+    }
     public int NumItems { get => items.Length; }
 
     [SerializeField] private InventoryItem[] items = null;
 
     private int selectedItem = 0;
+    private float moneyAmount = 0;
 
     private void Awake()
     {

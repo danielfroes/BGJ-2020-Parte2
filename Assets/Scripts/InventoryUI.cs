@@ -4,12 +4,13 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
-    [Header("References")]
+    [Header("Script References")]
     [SerializeField] private InventoryController Inventory = null;
 
     [Header("Serialized Properties")]
     [SerializeField] private GameObject itemBtnPrefab = null;
     [SerializeField] private Transform buttonLayout = null;
+    [SerializeField] private TMPro.TMP_Text moneyText = null;
     [SerializeField] private List<ItemBtn> buttons = null;
 
     [System.Serializable]
@@ -45,6 +46,12 @@ public class InventoryUI : MonoBehaviour
         }
 
         Inventory.OnItemUse += Inventory_OnItemUse;
+        Inventory.OnMoneyUpdate += Inventory_OnMoneyUpdate;
+    }
+
+    private void Inventory_OnMoneyUpdate()
+    {
+        moneyText.text = $"{Inventory.Money} $";
     }
 
     private void Inventory_OnItemUse(InventoryItem item, int index)
