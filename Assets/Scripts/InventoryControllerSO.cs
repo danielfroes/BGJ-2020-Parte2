@@ -91,6 +91,11 @@ public class InventoryControllerSO : ScriptableObject
         return items[i];
     }
 
+    public void ResetMoney()
+    {
+        Money = 0;
+    }
+
 #if UNITY_EDITOR
     public void GetMoney()
     {
