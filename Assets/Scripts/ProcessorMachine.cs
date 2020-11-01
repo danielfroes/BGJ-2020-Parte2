@@ -35,6 +35,7 @@ public class ProcessorMachine : MonoBehaviour
                     failCounter++;
                 }
             }
+            
             gp.Process();
             //Destroy(collision.gameObject);
 
