@@ -5,7 +5,7 @@ using UnityEngine.PlayerLoop;
 
 public class GarbagePile : MonoBehaviour
 {
-    private List<GarbageTypeComponent> items = new List<GarbageTypeComponent>();
+    public List<GarbageTypeComponent> items = new List<GarbageTypeComponent>();
     public List<GarbageItemType> testItems = null;
     public LayerMask conveyorLM = 0;
 

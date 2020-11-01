@@ -31,6 +31,7 @@ public class ItemPicker : MonoBehaviour
         objSelectedPrefab = _obj;
         objHover = Instantiate(objSelectedPrefab, new Vector3(50, 50, 50), transform.rotation);
         objHoverRenderer = objHover.GetComponentInChildren<MeshRenderer>();
+        objHover.GetComponentInChildren<Collider>().enabled = false;
     }
 
     void Update()
@@ -67,7 +68,6 @@ public class ItemPicker : MonoBehaviour
         GameObject g;
         if (grid.RemoveObject(hitInfo.point, out g))
         {
-            Debug.Log(g.name);
             Destroy(g);
         }
     }

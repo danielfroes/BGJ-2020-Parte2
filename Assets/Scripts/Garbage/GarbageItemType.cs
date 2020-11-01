@@ -4,5 +4,4 @@
 public class GarbageItemType: ScriptableObject
 {
     public GameObject prefab;
-
 }
