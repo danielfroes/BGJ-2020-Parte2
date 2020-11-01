@@ -69,4 +69,24 @@ public class InventoryController : MonoBehaviour
     {
         return items[i];
     }
+
+#if UNITY_EDITOR
+    [ContextMenu("Get 100 Moneys")]
+    public void GetMoney()
+    {
+        Money += 100;
+    }
+
+    [ContextMenu("BE RICH")]
+    public void BeRich()
+    {
+        Money += 10000000;
+    }
+
+    [ContextMenu("Get Poor")]
+    public void GetPoor()
+    {
+        Money = 0;
+    }
+#endif
 }
