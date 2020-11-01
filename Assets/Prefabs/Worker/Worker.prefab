@@ -139,8 +139,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecdcae76a8500fa4594f54cc922d87bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myPrecision: 0.2
-  workData: {fileID: 11400000, guid: 34a4850026f6b554a8efae92d0a89c43, type: 2}
+  myPrecision: 1
+  workData: {fileID: 11400000, guid: 4bbae22abdfc0d84db02d762fd881566, type: 2}
+  garbagePilePrefab: {fileID: 5071499145087510929, guid: d7bc5661e834f5f47ba031b05f3b6b32,
+    type: 3}
+  offset: {x: 0, y: 1, z: 0}
 --- !u!1 &8878737712812777389
 GameObject:
   m_ObjectHideFlags: 0

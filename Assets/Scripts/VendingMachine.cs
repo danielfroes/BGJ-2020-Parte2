@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
 
 public class VendingMachine : MonoBehaviour
@@ -28,10 +29,12 @@ public class VendingMachine : MonoBehaviour
                     finalPrice += gtc.type.sellingPrice;
                 }
             }
-
-            float multiplier = 1f - (failCounter / gp.items.Count);
-            inventory.SellPile(finalPrice * multiplier);
-
+            if(gp.items.Count != 0)
+            {
+                float multiplier = 1f - (failCounter / gp.items.Count);
+                inventory.SellPile(finalPrice * multiplier);
+            }
+            gp.StopAllCoroutines();
             Destroy(gp.gameObject);
         }
     }
