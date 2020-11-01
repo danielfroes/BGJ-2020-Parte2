@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class GridMap : MonoBehaviour
 {
-    public static float BaseGridSize = 1f;
+    public static float BaseGridSize = 0.64f;
 
     public float size = 1f;
     [SerializeField] private Dictionary<Vector3, GameObject> grid;

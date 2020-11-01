@@ -21,6 +21,8 @@ public class GarbageGenerator : MonoBehaviour
         if(time >= 1 / garbagePerSecond)
         {
             Vector3 finalPosition = transform.position + transform.forward * grid.size;
+            finalPosition.y = 0;//to find the conveyors
+            Debug.Log(finalPosition);
             if (!grid.IsPositionFree(finalPosition))
             {
                 CreateGarbagePile(finalPosition);
