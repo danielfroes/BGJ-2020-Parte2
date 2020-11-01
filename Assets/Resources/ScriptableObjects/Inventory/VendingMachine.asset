@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: VendingMachine
   m_EditorClassIdentifier: 
   count: 0
-  price: 0
-  prefab: {fileID: 0}
+  price: 10
+  prefab: {fileID: 7279820794581108169, guid: ed062127239b6274f8c1bf58e7b5c0cd, type: 3}
   sprite: {fileID: 0}
