@@ -7,11 +7,11 @@ using UnityEngine;
 public class Grid : MonoBehaviour
 {
     [SerializeField] private float size = 1f;
-    [SerializeField] private Dictionary<Vector3, bool> grid;
+    [SerializeField] private Dictionary<Vector3, GameObject> grid;
 
     void Start()
     {
-        grid = new Dictionary<Vector3, bool>();
+        grid = new Dictionary<Vector3, GameObject>();
     }
     public Vector3 GetNearestPointOnGrid(Vector3 position)
     {
@@ -28,13 +28,13 @@ public class Grid : MonoBehaviour
         return result;
     }
 
-    public bool PutObjectOngrid(Vector3 ClickPoint, GameObject g)
+    public bool PutObjectOngrid(Vector3 position, Quaternion rotation, GameObject objPrefab)
     {
-        Vector3 finalPos = GetNearestPointOnGrid(ClickPoint);
+        Vector3 finalPos = GetNearestPointOnGrid(position);
+        
         if (IsPositionFree(finalPos))
-        {
-            Instantiate(g, finalPos, transform.rotation);
-            grid.Add(finalPos, true);
+        { 
+            grid.Add(finalPos, Instantiate(objPrefab, finalPos, rotation));
             return true;
         }
 
@@ -42,14 +42,21 @@ public class Grid : MonoBehaviour
         
     }
 
-    public bool IsPositionFree(Vector3 position)
+    public bool RemoveObject(Vector3 ClickPoint, out GameObject objectInGrid)
     {
-        if (grid.ContainsKey(position))
+        Vector3 nearestPoint = GetNearestPointOnGrid(ClickPoint);
+        
+        if(grid.TryGetValue(nearestPoint, out objectInGrid))
         {
-            return !grid[position];
+            return grid.Remove(nearestPoint);
         }
 
-        return true;
+        return objectInGrid;
+    }
+
+    public bool IsPositionFree(Vector3 position)
+    {
+        return !grid.ContainsKey(position);
     } 
 
     /*
