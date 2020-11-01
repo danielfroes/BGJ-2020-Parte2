@@ -31,6 +31,7 @@ public class ItemPicker : MonoBehaviour
         objSelectedPrefab = _obj.prefab;
         objHover = Instantiate(objSelectedPrefab, new Vector3(50, 50, 50), transform.rotation);
         objHoverRenderer = objHover.GetComponentInChildren<MeshRenderer>();
+        objHover.GetComponentInChildren<Collider>().enabled = false;
     }
 
     void Update()

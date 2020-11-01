@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e500a502c5341e74e8731c723330b63e, type: 3}
-  m_Name: ConveyorBelt
+  m_Name: ProcessorMachine
   m_EditorClassIdentifier: 
   count: 0
-  price: 100
-  prefab: {fileID: 8286783458129717947, guid: e7fae0183dd0bbf43abaa40d17f6bf42, type: 3}
+  price: 0
+  prefab: {fileID: 0}
