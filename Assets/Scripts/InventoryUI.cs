@@ -16,9 +16,8 @@ public class InventoryUI : MonoBehaviour
     [System.Serializable]
     private class ItemBtn
     {
-        public Image image;
-        public TMPro.TMP_Text quantityText;
         public TMPro.TMP_Text priceText;
+        public TMPro.TMP_Text itemNameText;
     }
 
     private void Awake()
@@ -35,14 +34,13 @@ public class InventoryUI : MonoBehaviour
             obj.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => Inventory.SelectItem(int.Parse(obj.name.Split('_')[0])));
 
             buttons.Add(new ItemBtn {
-                image = obj.transform.Find("image").GetComponent<Image>(),
-                quantityText = obj.transform.Find("quantityText").GetComponentInChildren<TMPro.TMP_Text>(),
+                itemNameText = obj.transform.Find("itemName").GetComponentInChildren<TMPro.TMP_Text>(),
                 priceText = obj.transform.Find("priceText").GetComponentInChildren<TMPro.TMP_Text>()
             });
 
             var item = Inventory.GetItem(i);
-            buttons[i].image.sprite = item.sprite;
             Inventory_OnItemUse(item, i);
+            buttons[i].itemNameText.text = item.itemName;
         }
 
         Inventory.OnItemUse += Inventory_OnItemUse;
@@ -58,6 +56,5 @@ public class InventoryUI : MonoBehaviour
     private void Inventory_OnItemUse(InventoryItem item, int index)
     {
         buttons[index].priceText.text = item.price.ToString() + "$";
-        buttons[index].quantityText.text = item.count.ToString() + "x";
     }
 }
