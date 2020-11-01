@@ -13,9 +13,12 @@ public class ProcessorMachine : MonoBehaviour
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private GridMap grid = null;
 
+    private Animator animator = null;
+
     private void Start()
     {
         grid = FindObjectOfType<GridMap>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -35,7 +38,10 @@ public class ProcessorMachine : MonoBehaviour
                     failCounter++;
                 }
             }
-            
+
+            // Animation
+            animator.SetTrigger(0);
+
             gp.Process();
             //Destroy(collision.gameObject);
 
