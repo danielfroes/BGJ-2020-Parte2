@@ -15,4 +15,4 @@ MonoBehaviour:
   count: 0
   price: 20
   prefab: {fileID: 7279820794581108169, guid: e8d85d010cbcb5b49b9839d03b974c88, type: 3}
-  sprite: {fileID: 0}
+  itemName: Pm

@@ -15,4 +15,4 @@ MonoBehaviour:
   count: 0
   price: 15
   prefab: {fileID: 7171511411703191565, guid: 00288f992a1e69a45973fa3130a37345, type: 3}
-  sprite: {fileID: 0}
+  itemName: CbE
