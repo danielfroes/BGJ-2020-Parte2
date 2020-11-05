@@ -96,7 +96,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_FCC2C596: {r: 1, g: 1, b: 1, a: 0}
+    - Color_FCC2C596: {r: 0.97647065, g: 0.909804, b: 0.9058824, a: 1}
     - _BaseColor: {r: 0.8566661, g: 0.8773585, b: 0.8768175, a: 1}
     - _BaseColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
     - _CameraFadeParams: {r: 0, g: 0, b: 0, a: 0}
